@@ -29,10 +29,9 @@ jobs:
           name: Run tests
           command: |
             npm run test:ci
-      - codecov/upload:
-          file: ./coverage/lcov.info
 workflows:
   version: 2
   ci:
     jobs:
       - ci
+      - codecov/upload
