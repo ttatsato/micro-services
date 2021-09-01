@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  codecov: codecov/codecov@3.0.0
 jobs:
   ci:
     docker:
@@ -27,10 +29,11 @@ jobs:
           name: Run tests
           command: |
             npm run test:ci
-      - codecov/upload:
-            file: ./coverage/lcov.info
+      
 workflows:
   version: 2
   ci:
     jobs:
       - ci
+      - codecov/upload:
+          file: ./coverage/lcov.info
