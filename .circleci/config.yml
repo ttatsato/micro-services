@@ -27,7 +27,6 @@ jobs:
           name: Run tests
           command: |
             npm run test -- --coverage
-            npx codecov@3.0.2
 
 workflows:
   version: 2
