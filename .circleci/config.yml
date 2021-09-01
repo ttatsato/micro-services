@@ -1,20 +1,38 @@
-version: 2.1
+version: 2
 orbs:
-  node: circleci/node@1.1.6
   codecov: codecov/codecov@1.0.5
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  ci:
+    docker:
+      - image: cimg/node:lts
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-            - codecov/upload:
-                file: ./coverage/lcov.info
+
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      - save_cache:
+          key: node-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+
+      - run:
+          name: Run linter
+          command: npm run lint
+
+      - run:
+          name: Run tests
+          command: |
+            npm run test -- --coverage
+            npx codecov@3.0.2
+
 workflows:
-  build-and-test:
+  version: 2
+  ci:
     jobs:
-      - build-and-test
+      - ci
