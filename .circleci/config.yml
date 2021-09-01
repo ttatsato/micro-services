@@ -35,5 +35,5 @@ workflows:
   ci:
     jobs:
       - ci
-      - codecov/upload:
-          file: ./coverage/lcov.info
+      - codecov/upload
+
