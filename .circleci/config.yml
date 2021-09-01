@@ -2,6 +2,9 @@ version: 2
 orbs:
   codecov: codecov/codecov@1.0.4
 jobs:
+  upload:
+    steps:
+      - codecov/upload
   ci:
     docker:
       - image: cimg/node:lts
@@ -29,10 +32,9 @@ jobs:
           name: Run tests
           command: |
             npm run test:ci
-      - codecov/upload:
-          file: ./coverage/lcov.info
 workflows:
   version: 2
   ci:
     jobs:
       - ci
+      - upload
