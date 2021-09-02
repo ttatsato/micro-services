@@ -1,0 +1,5 @@
+# @see https://docs.codecov.com/docs/codecovyml-reference
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
