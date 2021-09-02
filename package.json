@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest",
-    "test:ci": "jest --coverage & codecov"
+    "test:ci": "jest --coverage"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
