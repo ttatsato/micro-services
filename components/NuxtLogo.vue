@@ -7,7 +7,10 @@
 export default {
   methods: {
     sum(a, b) {
-      return a - b;
+      if(a > b) {
+        return 2 * a + b
+      }
+      return a + b;
     }
   }
 }
