@@ -1,6 +1,6 @@
 # @see https://docs.codecov.com/docs/codecovyml-reference
 coverage:
-  range: 80..100
+  range: 81..100
   round: down
   precision: 2
 
